@@ -1,0 +1,104 @@
+import java.util.ArrayList;
+import java.util.List;
+
+// Represents a customer in the system
+class Customer {
+    String name;
+    CustomerType customerType;
+
+    public Customer(String name, CustomerType customerType) {
+        this.name = name;
+        this.customerType = customerType;
+    }
+}
+
+
+##########################################################
+
+class TypeEnum {
+    REGULAR_TYPE("Regular",  0.05),
+    PREMIUM_TYPE("Premium", 0.1),
+    VIP_TYPE("VIP", 0.2),
+
+    private String value;
+    private int key;
+
+    public String getValue() {
+        return value;
+    }
+
+    public int getKey() {
+        return key;
+    }
+}
+
+#################################################################
+
+class Order {
+    Customer customer;
+    List<String> items;
+    List<Double> prices;
+    double totalPrice;
+    double discountedPrice;
+
+    public Order(Customer customer) {
+        this.customer = customer;
+        this.items = new ArrayList<>();
+        this.prices = new ArrayList<>();
+    }
+
+    public void addItem(String item, double price) {
+        items.add(item);
+        prices.add(price);
+        calculateTotal();
+    }
+
+    private void calculateTotal() {
+        double totalPrice = 0;
+        for (double price : prices) {
+            totalPrice += price;
+        }
+        applyDiscount();
+    }
+
+    private void applyDiscount() {
+        discountedPrice = totalPrice - (totalPrice * customer.discount);
+    }
+
+    public void printOrder() {
+        System.out.println("Customer: " + customer.getName());
+        System.out.println("Items: " + items);
+        System.out.println("Total Price: " + totalPrice);
+        System.out.println("Discounted Price: " + discountedPrice);
+    }
+}
+
+
+
+#########################################
+class OrderManagementSystem {
+
+    public static final String LAPTOP = "Laptop";
+    public static final String MOUSE = "Mouse";
+    public static final String KEYBOARD = "Keyboard";
+
+    public static void main(String[] args) {
+        Customer customer = new Customer("John Doe", "VIP");
+        Order order = new Order(customer);
+        order.addItem(LAPTOP, 1000);
+        order.addItem(MOUSE", 50);
+        order.addItem(KEYBOARD, 80);
+        order.printOrder();
+        generateInvoice(order);
+    }
+
+    private static void generateInvoice(Order order) {
+        System.out.println("Generating Invoice...");
+        System.out.println("Customer: " + order.customer.name);
+        System.out.println("Total: $" + order.totalPrice);
+        System.out.println("Discounted Total: $" + order.discountedPrice);
+        System.out.println("Items: " + order.items);
+        System.out.println("Thank you for shopping with us!");
+    }
+}
+###################################
