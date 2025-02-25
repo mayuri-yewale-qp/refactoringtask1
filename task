@@ -1,12 +1,12 @@
 import java.util.ArrayList;
 import java.util.List;
 
-enum CustomerType {
+enum Type {
     REGULAR(0.05), PREMIUM(0.1), VIP(0.2);
     
     private final double discount;
     
-    CustomerType(double discount) {
+    Type(double discount) {
         this.discount = discount;
     }
     
