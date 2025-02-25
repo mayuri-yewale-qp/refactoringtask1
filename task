@@ -50,7 +50,6 @@ class Order {
     public void addItem(String item, double price) {
         items.add(item);
         prices.add(price);
-        calculateTotal();
     }
 
     private void calculateTotal() {
@@ -58,25 +57,25 @@ class Order {
         for (double price : prices) {
             totalPrice += price;
         }
-        applyDiscount();
+        discountPrice();
     }
 
-    private void applyDiscount() {
+    private void discountPrice() {
         discountedPrice = totalPrice - (totalPrice * customer.discount);
     }
 
     public void printOrder() {
         System.out.println("Customer: " + customer.getName());
         System.out.println("Items: " + items);
-        System.out.println("Total Price: " + totalPrice);
+        System.out.println("Total Price: " + calculateTotal());
         System.out.println("Discounted Price: " + discountedPrice);
     }
 
   private static void generateInvoice(Order order) {
         System.out.println("Generating Invoice...");
         System.out.println("Customer: " + customer.getName());
-        System.out.println("Total: $" + totalPrice);
-        System.out.println("Discounted Total: $" + discountedPrice);
+        System.out.println("Total: $" + calculateTotal());
+        System.out.println("Discounted Total: $" + discountPrice());
         System.out.println("Items: " + items);
         System.out.println("Thank you for shopping with us!");
     }
