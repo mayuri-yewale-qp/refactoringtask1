@@ -71,6 +71,15 @@ class Order {
         System.out.println("Total Price: " + totalPrice);
         System.out.println("Discounted Price: " + discountedPrice);
     }
+
+  private static void generateInvoice(Order order) {
+        System.out.println("Generating Invoice...");
+        System.out.println("Customer: " + customer.getName());
+        System.out.println("Total: $" + totalPrice);
+        System.out.println("Discounted Total: $" + discountedPrice);
+        System.out.println("Items: " + items);
+        System.out.println("Thank you for shopping with us!");
+    }
 }
 
 
@@ -90,15 +99,6 @@ class OrderManagementSystem {
         order.addItem(KEYBOARD, 80);
         order.printOrder();
         generateInvoice(order);
-    }
-
-    private static void generateInvoice(Order order) {
-        System.out.println("Generating Invoice...");
-        System.out.println("Customer: " + order.customer.name);
-        System.out.println("Total: $" + order.totalPrice);
-        System.out.println("Discounted Total: $" + order.discountedPrice);
-        System.out.println("Items: " + order.items);
-        System.out.println("Thank you for shopping with us!");
     }
 }
 ###################################
